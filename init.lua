@@ -23,7 +23,12 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim",
 		}
 	},
+    { "neanias/everforest-nvim" },
+    { "dzfrias/noir.nvim" },
+    { "FabijanZulj/blame.nvim" },
 })
+
+require("blame").setup({ })
 
 require("neo-tree").setup({
 	filesystem = {
@@ -40,12 +45,18 @@ require("neo-tree").setup({
 
 -- general
 vim.g.mapleader = " "
-vim.opt.number = true
 vim.opt.tabstop = 4 -- width of tab
 vim.opt.shiftwidth = 4 -- how much to indent with >>
 vim.opt.expandtab = true -- spaces over tabs
 vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>")
 --vim.cmd("syntax off")
+vim.cmd.colorscheme("noir")
+vim.cmd("set number")
+vim.cmd("set cursorline")
+
+-- seraching
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- buffers
 vim.keymap.set("n", "<S-h>", "<Cmd>bprevious<CR>")
@@ -68,3 +79,6 @@ vim.keymap.set("n", "<leader>f", fzf.files)
 vim.keymap.set("n", "<leader>b", fzf.buffers)
 vim.keymap.set("n", "<leader>r", fzf.registers)
 vim.keymap.set("n", "<leader>g", fzf.live_grep)
+
+-- blame
+vim.keymap.set("n", "<leader>w", "<Cmd>Blame<CR>")
