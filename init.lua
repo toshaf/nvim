@@ -85,5 +85,9 @@ vim.keymap.set("n", "<leader>w", "<Cmd>Blame<CR>")
 
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = { "*.c", "*.cc", "*.cpp", "*.h", "*.hpp" },
-    command = "silent! %!clang-format",
+    callback = function()
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        vim.cmd("silent! %!clang-format")
+        vim.api.nvim_win_set_cursor(0, cursor)
+    end,
 })
