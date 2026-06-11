@@ -82,3 +82,8 @@ vim.keymap.set("n", "<leader>g", fzf.live_grep)
 
 -- blame
 vim.keymap.set("n", "<leader>w", "<Cmd>Blame<CR>")
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.c", "*.cc", "*.cpp", "*.h", "*.hpp" },
+    command = "silent! %!clang-format",
+})
