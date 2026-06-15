@@ -45,8 +45,8 @@ require("neo-tree").setup({
 
 -- general
 vim.g.mapleader = " "
-vim.opt.tabstop = 4 -- width of tab
-vim.opt.shiftwidth = 4 -- how much to indent with >>
+vim.opt.tabstop = 2 -- width of tab
+vim.opt.shiftwidth = 2 -- how much to indent with >>
 vim.opt.expandtab = true -- spaces over tabs
 vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>")
 --vim.cmd("syntax off")
