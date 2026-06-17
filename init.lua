@@ -76,9 +76,15 @@ vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>")
 -- fzf-lua
 local fzf = require("fzf-lua")
 vim.keymap.set("n", "<leader>f", fzf.files)
+vim.keymap.set("n", "<leader>F", function()
+  fzf.files({ cwd = vim.fn.expand("%:p:h") })
+end)
+vim.keymap.set("n", "<leader>g", fzf.live_grep)
+vim.keymap.set("n", "<leader>G", function()
+  fzf.live_grep({ cwd = vim.fn.expand("%:p:h") })
+end)
 vim.keymap.set("n", "<leader>b", fzf.buffers)
 vim.keymap.set("n", "<leader>r", fzf.registers)
-vim.keymap.set("n", "<leader>g", fzf.live_grep)
 
 -- blame
 vim.keymap.set("n", "<leader>w", "<Cmd>Blame<CR>")
