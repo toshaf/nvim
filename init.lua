@@ -35,7 +35,7 @@ require("conform").setup({
     cpp = { "clang_format" },
     rust = { "rustfmt" },
   },
-  format_on_save = { timeout_ms = 1000, lsp_format = "never" ),
+  format_on_save = { timeout_ms = 1000, lsp_format = "never" },
 })
 
 require("blame").setup({ })
