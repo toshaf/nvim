@@ -26,6 +26,16 @@ require("lazy").setup({
     { "neanias/everforest-nvim" },
     { "dzfrias/noir.nvim" },
     { "FabijanZulj/blame.nvim" },
+    { "stevearc/conform.nvim" },
+})
+
+require("conform").setup({
+  formatters_by_ft = {
+    c = { "clang_format" },
+    cpp = { "clang_format" },
+    rust = { "rustfmt" },
+  },
+  format_on_save = { timeout_ms = 1000, lsp_format = "never" ),
 })
 
 require("blame").setup({ })
@@ -62,14 +72,6 @@ vim.o.smartcase = true
 vim.keymap.set("n", "<S-h>", "<Cmd>bprevious<CR>")
 vim.keymap.set("n", "<S-l>", "<Cmd>bnext<CR>")
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "*.rs",
-	callback = function() 
-		vim.cmd("silent !rustfmt --edition 2024 " .. vim.fn.expand("%:p"))
-		vim.cmd("edit")
-	end,
-})
-
 -- neo-tree
 vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>")
 
@@ -88,12 +90,3 @@ vim.keymap.set("n", "<leader>r", fzf.registers)
 
 -- blame
 vim.keymap.set("n", "<leader>w", "<Cmd>Blame<CR>")
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.c", "*.cc", "*.cpp", "*.h", "*.hpp" },
-    callback = function()
-        local cursor = vim.api.nvim_win_get_cursor(0)
-        vim.cmd("silent! %!clang-format")
-        vim.api.nvim_win_set_cursor(0, cursor)
-    end,
-})
